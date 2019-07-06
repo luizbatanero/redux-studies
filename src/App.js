@@ -1,30 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { addTodo } from './actions';
+import AddTodo from './components/AddTodo';
+import TodoList from './components/TodoList';
 
-const App = ({ todos, addTodo }) => (
+const App = () => (
   <>
-    <button type="button" onClick={() => addTodo('Testing')}>
-      Add Todo
-    </button>
-    <ul>
-      {todos.map(todo => (
-        <li key={todo.id}>{todo.title}</li>
-      ))}
-    </ul>
+    <AddTodo />
+    <TodoList />
   </>
 );
 
-const mapStateToProps = ({ todos }) => ({
-  todos,
-});
-
-const mapDispatchToProps = {
-  addTodo,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
