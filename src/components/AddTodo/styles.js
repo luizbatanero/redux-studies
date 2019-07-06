@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 
   input {
     flex: 1;

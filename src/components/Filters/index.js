@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { Container, Button } from './styles';
 import filters from '../../filters';
 import { setFilter } from '../../actions';
 
 const Filters = ({ filter, setFilter }) => (
-  <div>
+  <Container>
     {Object.keys(filters).map(key => (
-      <button
+      <Button
         type="button"
         key={key}
         active={filter === filters[key] ? 1 : 0}
         onClick={() => setFilter(filters[key])}
       >
         {filters[key]}
-      </button>
+      </Button>
     ))}
-  </div>
+  </Container>
 );
 
 const mapStateToProps = ({ filter }) => ({
