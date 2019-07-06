@@ -29,6 +29,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       'warn',
       { extensions: ['.jsx', '.js'] }
-    ]
+    ],
+    'no-shadow': 'off'
   },
 };
