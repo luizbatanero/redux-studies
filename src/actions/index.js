@@ -19,3 +19,8 @@ export const toggleTodo = id => ({
   type: TYPES.TOGGLE_TODO,
   id,
 });
+
+export const setFilter = filter => ({
+  type: TYPES.SET_FILTER,
+  filter,
+});

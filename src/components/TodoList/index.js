@@ -6,7 +6,7 @@ import { Empty } from './styles';
 
 const TodoList = ({ todos }) => {
   if (!todos.length) {
-    return <Empty>Nothing to do.</Empty>;
+    return <Empty>Nothing to see here.</Empty>;
   }
 
   return (
