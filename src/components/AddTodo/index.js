@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FaPlus } from 'react-icons/fa';
 
-import { addTodo } from '../actions';
+import { addTodo } from '../../actions';
+import { Form } from './styles';
 
 class AddTodo extends Component {
   state = {
@@ -28,12 +30,12 @@ class AddTodo extends Component {
     const { newTodo } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <input type="text" value={newTodo} onChange={this.handleChange} />
         <button type="submit" disabled={!newTodo}>
-          Add
+          <FaPlus />
         </button>
-      </form>
+      </Form>
     );
   }
 }

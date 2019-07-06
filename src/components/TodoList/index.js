@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Todo from './Todo';
+import Todo from '../Todo';
+import { Empty } from './styles';
 
 const TodoList = ({ todos }) => {
   if (!todos.length) {
-    return <p>Nothing to do.</p>;
+    return <Empty>Nothing to do.</Empty>;
   }
 
   return (
-    <ul>
+    <div>
       {todos.map(todo => (
         <Todo todo={todo} key={todo.id} />
       ))}
-    </ul>
+    </div>
   );
 };
 
