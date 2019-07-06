@@ -1,5 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Todo = ({ todo }) => <li key={todo.id}>{todo.title}</li>;
+import { removeTodo } from '../actions';
 
-export default Todo;
+const Todo = ({ todo, removeTodo }) => (
+  <li key={todo.id}>
+    <span>{todo.title}</span>
+    <button type="button" onClick={() => removeTodo(todo.id)}>
+      Remove
+    </button>
+  </li>
+);
+
+export default connect(
+  null,
+  { removeTodo }
+)(Todo);

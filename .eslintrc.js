@@ -31,6 +31,7 @@ module.exports = {
       'warn',
       { extensions: ['.jsx', '.js'] }
     ],
-    'no-shadow': 'off'
+    'no-shadow': 'off',
+    'react/prop-types': 'off',
   },
 };
