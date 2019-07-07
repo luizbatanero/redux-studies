@@ -1,30 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Container, Button } from './styles';
 import filters from '../../filters';
 import { setFilter } from '../../actions';
 
-const Filters = ({ filter, setFilter }) => (
-  <Container>
-    {Object.keys(filters).map(key => (
-      <Button
-        type="button"
-        key={key}
-        active={filter === filters[key] ? 1 : 0}
-        onClick={() => setFilter(filters[key])}
-      >
-        {filters[key]}
-      </Button>
-    ))}
-  </Container>
-);
+const Filters = () => {
+  const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
 
-const mapStateToProps = ({ filter }) => ({
-  filter,
-});
+  return (
+    <Container>
+      {Object.keys(filters).map(key => (
+        <Button
+          type="button"
+          key={key}
+          active={filter === filters[key] ? 1 : 0}
+          onClick={() => dispatch(setFilter(filters[key]))}
+        >
+          {filters[key]}
+        </Button>
+      ))}
+    </Container>
+  );
+};
 
-export default connect(
-  mapStateToProps,
-  { setFilter }
-)(Filters);
+export default Filters;

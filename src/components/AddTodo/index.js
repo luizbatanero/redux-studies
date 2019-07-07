@@ -1,46 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 
 import { addTodo } from '../../actions';
 import { Form } from './styles';
 
-class AddTodo extends Component {
-  state = {
-    newTodo: '',
-  };
+const AddTodo = () => {
+  const [newTodo, setNewTodo] = useState('');
+  const dispatch = useDispatch();
 
-  handleChange = e => {
-    this.setState({
-      newTodo: e.target.value,
-    });
-  };
+  const handleChange = e => setNewTodo(e.target.value);
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-
-    const { newTodo } = this.state;
-    const { addTodo } = this.props;
-
-    addTodo(newTodo);
-    this.setState({ newTodo: '' });
+    dispatch(addTodo(newTodo));
+    setNewTodo('');
   };
 
-  render() {
-    const { newTodo } = this.state;
+  return (
+    <Form onSubmit={handleSubmit}>
+      <input type="text" value={newTodo} onChange={handleChange} />
+      <button type="submit" disabled={!newTodo}>
+        <FaPlus />
+      </button>
+    </Form>
+  );
+};
 
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <input type="text" value={newTodo} onChange={this.handleChange} />
-        <button type="submit" disabled={!newTodo}>
-          <FaPlus />
-        </button>
-      </Form>
-    );
-  }
-}
-
-export default connect(
-  null,
-  { addTodo }
-)(AddTodo);
+export default AddTodo;

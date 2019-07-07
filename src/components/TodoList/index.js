@@ -1,11 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Todo from '../Todo';
 import { Empty } from './styles';
 import { applyFilter } from '../../filters';
 
-const TodoList = ({ todos }) => {
+const TodoList = () => {
+  const filter = useSelector(state => state.filter);
+  const todos = useSelector(state => applyFilter(state.todos, filter));
+
   if (!todos.length) {
     return <Empty>Nothing to see here.</Empty>;
   }
@@ -19,8 +22,4 @@ const TodoList = ({ todos }) => {
   );
 };
 
-const mapStateToProps = ({ todos, filter }) => ({
-  todos: applyFilter(todos, filter),
-});
-
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;
