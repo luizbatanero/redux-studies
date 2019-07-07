@@ -5,7 +5,7 @@ import Todo from '../Todo';
 import { Empty } from './styles';
 import { applyFilter } from '../../filters';
 
-const TodoList = ({ todos, filter }) => {
+const TodoList = ({ todos }) => {
   if (!todos.length) {
     return <Empty>Nothing to see here.</Empty>;
   }
