@@ -1,16 +1,25 @@
+import produce from 'immer';
+
 import * as TYPES from '../actions/types';
 
 export default function(state = [], action) {
-  switch (action.type) {
-    case TYPES.ADD_TODO:
-      return [...state, action.todo];
-    case TYPES.REMOVE_TODO:
-      return state.filter(todo => todo.id !== action.id);
-    case TYPES.TOGGLE_TODO:
-      return state.map(todo =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-      );
-    default:
-      return state;
-  }
+  return produce(state, draft => {
+    let index;
+    switch (action.type) {
+      case TYPES.ADD_TODO:
+        draft.push(action.todo);
+        break;
+      case TYPES.REMOVE_TODO:
+        index = draft.findIndex(todo => todo.id === action.id);
+        if (index >= 0) {
+          draft.splice(index, 1);
+        }
+        break;
+      case TYPES.TOGGLE_TODO:
+        index = draft.findIndex(todo => todo.id === action.id);
+        draft[index].completed = !draft[index].completed;
+        break;
+      default:
+    }
+  })
 }
